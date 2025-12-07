@@ -1,31 +1,22 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using SecureVault.Web.Models;
+// HomeController.cs içine ekleyebilirsin
 
-namespace SecureVault.Web.Controllers;
-
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc; // Bunu eklemeyi unutma
+namespace SecureVault.Web.Controllers
+{
+    
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
     public IActionResult Index()
     {
         return View();
     }
 
-    public IActionResult Privacy()
+    // BU SAYFAYA SADECE IT DEPARTMANI GİREBİLİR
+    [Authorize(Policy = "ITOnly")] 
+    public IActionResult SecretITPage()
     {
-        return View();
+        return Content("Tebrikler! IT Departmanındasın ve bu gizli yazıyı görüyorsun.");
     }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+}
 }

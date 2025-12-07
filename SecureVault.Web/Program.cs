@@ -12,6 +12,14 @@ builder.Services.AddAuthentication("CookieAuth").AddCookie("CookieAuth" , option
 {
    options.LoginPath="/Account/Login";
    options.ExpireTimeSpan=TimeSpan.FromMinutes(20); 
+   options.AccessDeniedPath = "/Account/AccessDenied"; // Yetkisi yetmeyeni buraya atar
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    //yetkilendirme !
+   options.AddPolicy("ITOnly", policy =>
+        policy.RequireClaim("Department","IT")); 
 });
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -30,7 +38,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+//kimlik tesiti
 app.UseAuthentication();
+
+//yetki kontrolü
 app.UseAuthorization();
 
 app.MapStaticAssets();

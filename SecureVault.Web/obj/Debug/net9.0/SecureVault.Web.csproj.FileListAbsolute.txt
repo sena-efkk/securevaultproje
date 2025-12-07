@@ -218,3 +218,4 @@ C:\Users\senas\OneDrive\Desktop\asp.netcore\SecureVault\SecureVault.Web\obj\Debu
 C:\Users\senas\OneDrive\Desktop\asp.netcore\SecureVault\SecureVault.Web\obj\Debug\net9.0\SecureVault.Web.genruntimeconfig.cache
 C:\Users\senas\OneDrive\Desktop\asp.netcore\SecureVault\SecureVault.Web\obj\Debug\net9.0\ref\SecureVault.Web.dll
 C:\Users\senas\OneDrive\Desktop\asp.netcore\SecureVault\SecureVault.Web\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\senas\OneDrive\Desktop\asp.netcore\SecureVault\SecureVault.Web\obj\Debug\net9.0\SecureVault.Web.sourcelink.json

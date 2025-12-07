@@ -51,7 +51,7 @@ namespace SecureVault.Web
         {
             new Claim(ClaimTypes.Name, user.Username), // User.Identity.Name için
             new Claim(ClaimTypes.Role, user.Role), // [Authorize(Roles="Admin")] için
-            new Claim("Department", user.Department), // Özel claim
+            new Claim("Department", user.Department), // Özel claim !!
             new Claim("Seniority", user.Seniority.ToString()), // Özel claim
             new Claim("UserId", user.Id.ToString()) // İleride DB ilişkileri için lazım olur
         };
@@ -66,7 +66,7 @@ namespace SecureVault.Web
             var authProperties = new AuthenticationProperties
             {
                 IsPersistent = true, // Beni hatırla özelliği
-                ExpiresUtc = DateTime.UtcNow.AddMinutes(20) 
+                ExpiresUtc = DateTime.UtcNow.AddMinutes(20)
             };
 
             // sisteme girdi :Cookie'nin şifrelenip Responsea yazıldığı an
@@ -99,6 +99,12 @@ namespace SecureVault.Web
             _authService.RegisterUser(model.Username, model.Password, "User");
 
             return RedirectToAction("Login");
+        }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
