@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<AuthService>();
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddAuthentication("CookieAuth").AddCookie("CookieAuth" , options =>
 {
    options.LoginPath="/Account/Login";

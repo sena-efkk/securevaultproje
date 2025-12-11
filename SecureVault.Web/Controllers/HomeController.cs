@@ -7,9 +7,17 @@ namespace SecureVault.Web.Controllers
     
 public class HomeController : Controller
 {
+    private readonly IHttpContextAccessor _contextAccessor;
+
+    public HomeController(IHttpContextAccessor contextAccessor)
+    {
+        _contextAccessor = contextAccessor;
+    }
+
     public IActionResult Index()
     {
-        return View();
+        var profile = _contextAccessor.HttpContext?.User?.Claims;
+        return View(profile);
     }
 
     // BU SAYFAYA SADECE IT DEPARTMANI GİREBİLİR
